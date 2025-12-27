@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply bg-ivory-50 text-midnight-800 overflow-x-hidden;
+    }
+
+    /* Custom Scrollbar - Romantic Style */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-ivory-100;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gradient-to-b from-blush-400 to-romance-400 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply from-blush-500 to-romance-500;
+    }
+
+    /* Selection */
+    ::selection {
+        @apply bg-blush-200 text-romance-700;
+    }
+}
+
+/* Glassmorphism Components */
+@layer components {
+    .glass {
+        @apply bg-white/20 backdrop-blur-lg border border-white/30 shadow-glass;
+    }
+
+    .glass-card {
+        @apply bg-white/30 backdrop-blur-xl border border-white/40 shadow-glass rounded-3xl;
+    }
+
+    .glass-dark {
+        @apply bg-midnight-900/30 backdrop-blur-lg border border-white/10 shadow-glass;
+    }
+
+    .glass-romantic {
+        @apply bg-blush-100/40 backdrop-blur-xl border border-blush-200/50 shadow-romantic rounded-3xl;
+    }
+
+    /* Typography */
+    .heading-romantic {
+        @apply font-script text-4xl md:text-6xl lg:text-7xl text-romance-600;
+        text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.1);
+    }
+
+    .heading-elegant {
+        @apply font-serif text-3xl md:text-5xl lg:text-6xl text-midnight-800 tracking-wide;
+    }
+
+    .text-poetic {
+        @apply font-serif text-lg md:text-xl text-midnight-600 leading-relaxed italic;
+    }
+
+    /* Buttons */
+    .btn-romantic {
+        @apply px-8 py-4 rounded-full font-sans text-sm uppercase tracking-widest bg-gradient-to-r from-blush-500 to-romance-500 text-white shadow-romantic hover:shadow-glow-pink transform hover:scale-105 transition-all duration-500 ease-out;
+    }
+
+    .btn-glass {
+        @apply px-8 py-4 rounded-full font-sans text-sm uppercase tracking-widest glass text-midnight-700 hover:bg-white/40 hover:shadow-glass-strong transform hover:scale-105 transition-all duration-500 ease-out;
+    }
+
+    /* Decorative Elements */
+    .divider-romantic {
+        @apply w-24 h-px bg-gradient-to-r from-transparent via-champagne-600 to-transparent mx-auto my-8;
+    }
+
+    .heart-icon {
+        @apply text-romance-500 animate-heartbeat inline-block;
+    }
+
+    /* Floating Particles Container */
+    .particles-container {
+        @apply fixed inset-0 pointer-events-none overflow-hidden z-0;
+    }
+
+    .particle {
+        @apply absolute w-2 h-2 rounded-full bg-blush-300/50 animate-particle-float;
+    }
+
+    /* Photo Frames */
+    .photo-frame {
+        @apply relative overflow-hidden rounded-2xl shadow-romantic before:absolute before:inset-0 before:border-4 before:border-white/50 before:rounded-2xl before:pointer-events-none before:z-10;
+    }
+
+    .photo-frame-polaroid {
+        @apply bg-white p-3 pb-12 rounded-sm shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out;
+    }
+
+    /* Love Letter Paper */
+    .letter-paper {
+        @apply bg-ivory-100 rounded-lg shadow-lg p-8 md:p-12;
+        background-image: linear-gradient(transparent 95%, #f0e6d3 95%);
+        background-size: 100% 2rem;
+    }
+
+    /* Timeline */
+    .timeline-line {
+        @apply absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-blush-300 via-champagne-500 to-romance-400;
+    }
+
+    .timeline-dot {
+        @apply w-4 h-4 rounded-full bg-romance-500 border-4 border-white shadow-glow-pink animate-pulse-soft;
+    }
+}
+
+/* Custom Utilities */
+@layer utilities {
+    .text-shadow-romantic {
+        text-shadow: 2px 2px 8px rgba(220, 20, 60, 0.2);
+    }
+
+    .text-shadow-light {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-gradient-romantic {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-blush-600 via-romance-500 to-champagne-600;
+    }
+
+    .mask-fade-bottom {
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+
+    .mask-fade-edges {
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    /* Perspective for 3D effects */
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+
+    /* Smooth transitions */
+    .transition-romantic {
+        @apply transition-all duration-700 ease-[cubic-bezier(0.4, 0, 0.2, 1)];
+    }
+
+    /* Animation delays */
+    .delay-100 {
+        animation-delay: 100ms;
+    }
+
+    .delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .delay-300 {
+        animation-delay: 300ms;
+    }
+
+    .delay-400 {
+        animation-delay: 400ms;
+    }
+
+    .delay-500 {
+        animation-delay: 500ms;
+    }
+
+    .delay-700 {
+        animation-delay: 700ms;
+    }
+
+    .delay-1000 {
+        animation-delay: 1000ms;
+    }
+
+    /* Glow effects */
+    .glow-romantic {
+        filter: drop-shadow(0 0 20px rgba(255, 107, 138, 0.4));
+    }
+
+    .glow-gold {
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+    }
+}
+
+/* Night Mode Overrides */
+.night-mode {
+    @apply bg-midnight-950;
+}
+
+.night-mode .glass {
+    @apply bg-midnight-800/30 border-midnight-600/30;
+}
+
+.night-mode .glass-card {
+    @apply bg-midnight-800/40 border-midnight-600/40;
+}
+
+/* Bokeh Effect Background */
+.bokeh-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.bokeh-bg::before,
+.bokeh-bg::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite;
+}
+
+.bokeh-bg::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 138, 0.4) 0%, transparent 70%);
+    top: 10%;
+    left: 10%;
+}
+
+.bokeh-bg::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: -4s;
+}
+
+/* Stars for Night Mode */
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, white, transparent),
+        radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 230px 80px, white, transparent),
+        radial-gradient(2px 2px at 300px 150px, rgba(255, 255, 255, 0.7), transparent);
+    background-repeat: repeat;
+    background-size: 350px 200px;
+    animation: twinkle 5s ease-in-out infinite;
+}
+
+/* Smooth Page Transitions */
+.page-transition-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+.page-transition-exit {
+    opacity: 1;
+}
+
+.page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 400ms ease-in;
+}
