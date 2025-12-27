@@ -10,11 +10,13 @@ declare global {
     var mongooseCache: MongooseCache | undefined
 }
 
-const MONGODB_URI: string = process.env.MONGODB_URI!
-
-if (!MONGODB_URI) {
-    throw new Error('Please define the MONGODB_URI environment variable inside .env')
-}
+const MONGODB_URI = (() => {
+    const uri = process.env.MONGODB_URI
+    if (!uri) {
+        throw new Error('Please define the MONGODB_URI environment variable inside .env')
+    }
+    return uri
+})()
 
 const cached: MongooseCache = global.mongooseCache ?? { conn: null, promise: null }
 
