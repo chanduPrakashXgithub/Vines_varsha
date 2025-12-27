@@ -1,11 +1,13 @@
-import mongoose, { Mongoose } from 'mongoose'
+import mongoose, { Connection } from 'mongoose'
+
+interface MongooseCache {
+    conn: Connection | null
+    promise: Promise<Connection> | null
+}
 
 declare global {
     // eslint-disable-next-line no-var
-    var mongoose: {
-        conn: Mongoose | null
-        promise: Promise<Mongoose> | null
-    } | undefined
+    var mongooseCache: MongooseCache | undefined
 }
 
 const MONGODB_URI = process.env.MONGODB_URI
@@ -14,33 +16,33 @@ if (!MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable inside .env')
 }
 
-let cached = global.mongoose
+const cached: MongooseCache = global.mongooseCache ?? { conn: null, promise: null }
 
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null }
+if (!global.mongooseCache) {
+    global.mongooseCache = cached
 }
 
-async function dbConnect(): Promise<Mongoose> {
-    if (cached!.conn) {
-        return cached!.conn
+async function dbConnect(): Promise<Connection> {
+    if (cached.conn) {
+        return cached.conn
     }
 
-    if (!cached!.promise) {
+    if (!cached.promise) {
         const opts = {
             bufferCommands: false,
         }
 
-        cached!.promise = mongoose.connect(MONGODB_URI, opts)
+        cached.promise = mongoose.connect(MONGODB_URI, opts).then((m) => m.connection)
     }
 
     try {
-        cached!.conn = await cached!.promise
+        cached.conn = await cached.promise
     } catch (e) {
-        cached!.promise = null
+        cached.promise = null
         throw e
     }
 
-    return cached!.conn
+    return cached.conn
 }
 
 export default dbConnect
